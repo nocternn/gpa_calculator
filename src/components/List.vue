@@ -1,21 +1,17 @@
 <template>
   <div class="container">
-    <section class="options">
-      <Toolbar v-on:add-item="addItem" v-on:remove-item="removeItem" />
+    <section class="toolbar z-depth-2">
+      <Toolbar v-on:add-item="addItem" />
     </section>
 
-    <section class="content">
-      <div class="list-item" v-bind:key="course.id" v-for="course in courses">
-        <ListItem v-bind:course="course" />
+    <section class="grey darken-4">
+      <div v-bind:key="course.id" v-for="course in courses">
+        <ListItem
+          v-bind:course="course"
+          v-on:remove-item="removeItem"
+          v-on:register-score="updateGPA"
+        />
       </div>
-    </section>
-
-    <section class="result">
-      <input
-        class="btn waves-effect waves-light white-text"
-        type="button"
-        value="Calculate your GPA"
-      />
     </section>
   </div>
 </template>
@@ -37,6 +33,9 @@ export default {
     },
     removeItem() {
       this.$emit("remove-item");
+    },
+    updateGPA(result) {
+      console.log(result);
     },
   },
 };
