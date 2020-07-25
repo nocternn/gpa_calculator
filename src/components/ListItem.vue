@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <input type="checkbox" class="checkbox" />
-    <span>[{{course.id}}] {{course.title}}</span>
-  </div>
+  <label>
+    <input type="checkbox" v-on:change="markSelected" />
+    <span class="white-text">[{{course.id}}] {{course.title}}</span>
+  </label>
 </template>
 
 <script>
 export default {
   name: "ListItem",
   props: ["course"],
+  methods: {
+    markSelected() {
+      this.course.selected = !this.course.selected;
+    },
+  },
 };
 </script>
 
 <style scoped>
-div {
-  padding: 10px;
-}
 </style>

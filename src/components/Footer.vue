@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Credits</h3>
+    <p>Credits</p>
   </div>
 </template>
 
@@ -15,6 +15,6 @@ export default {
 div {
   background: #0c0c0c;
   text-align: center;
-  padding: 5px 0px;
+  padding: 1vh 0px;
 }
 </style>

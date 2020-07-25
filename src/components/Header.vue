@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>GPA Calculator</h1>
+    <h2>GPA Calculator</h2>
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
 div {
   background: #0c0c0c;
   text-align: center;
-  padding: 10px 0px;
+  padding: 1vh 0;
+}
+h2 {
+  margin: 0;
 }
 </style>

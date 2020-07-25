@@ -1,60 +1,46 @@
 <template>
   <div class="container">
-    <div class="options">
-      <input type="checkbox" class="checkbox" />
-      <input type="button" value="Add" class="btn" />
-      <input type="button" value="Remove" class="btn" />
-    </div>
+    <section class="options">
+      <Toolbar v-on:add-item="addItem" v-on:remove-item="removeItem" />
+    </section>
 
-    <div class="content">
+    <section class="content">
       <div class="list-item" v-bind:key="course.id" v-for="course in courses">
         <ListItem v-bind:course="course" />
       </div>
-    </div>
+    </section>
 
-    <div class="result">
-      <input type="button" value="Calculate your GPA" class="btn" />
-    </div>
+    <section class="result">
+      <input
+        class="btn waves-effect waves-light white-text"
+        type="button"
+        value="Calculate your GPA"
+      />
+    </section>
   </div>
 </template>
 
 <script>
+import Toolbar from "./ListToolbar.vue";
 import ListItem from "./ListItem.vue";
 
 export default {
   name: "List",
   components: {
+    Toolbar,
     ListItem,
   },
   props: ["courses"],
+  methods: {
+    addItem(newItem) {
+      this.$emit("add-item", newItem);
+    },
+    removeItem() {
+      this.$emit("remove-item");
+    },
+  },
 };
 </script>
 
 <style scoped>
-.container {
-  width: 80%;
-  margin: 5vh auto;
-  border: 2px solid #0c0c0c;
-  border-radius: 5px;
-}
-
-.options {
-  height: 10%;
-  padding: 1vh;
-  border-bottom: 2px solid #0c0c0c;
-}
-
-.content {
-  height: 80%;
-}
-.content .list-item {
-  padding: 1vh 0;
-  border-bottom: 1px solid #0c0c0c;
-}
-
-.result {
-  height: 10%;
-  padding: 1vh;
-  border-top: 2px solid #0c0c0c;
-}
 </style>

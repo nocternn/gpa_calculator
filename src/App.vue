@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <Header id="header" />
-    <List id="body" v-bind:courses="courses" />
+    <List
+      id="body"
+      v-bind:courses="courses"
+      v-on:mark-selected-all="markSelectedAll"
+      v-on:add-item="addItem"
+      v-on:remove-item="removeItems"
+    />
     <Footer id="footer" />
   </div>
 </template>
@@ -42,6 +48,14 @@ export default {
       ],
     };
   },
+  methods: {
+    addItem(newItem) {
+      this.courses = [...this.courses, newItem];
+    },
+    removeItems() {
+      this.courses = this.courses.filter((todo) => todo.selected !== true);
+    },
+  },
 };
 </script>
 
@@ -58,7 +72,7 @@ html {
 
 body {
   font-family: "Tahoma", "Geneva", sans-serif;
-  line-height: 1.2;
+  line-height: 1.4;
   background: #1a1a1a;
   color: #e7e7e7;
   min-height: 100%;
@@ -73,30 +87,10 @@ body {
 }
 
 #body {
-  height: 75vh;
+  height: 85vh;
 }
 
 #footer {
   height: 5vh;
-}
-
-.checkbox {
-  margin-right: 5px;
-  border-radius: 2px;
-}
-
-.btn {
-  margin: 0 5px;
-  padding: 5px;
-  outline: none;
-  background: rgba(0, 0, 0, 0.4);
-  border: none;
-  border-radius: 5px;
-  color: #e7e7e7;
-  font-family: "Tahoma", "Geneva", sans-serif;
-  font-size: 1em;
-}
-.btn:hover {
-  background: rgba(0, 0, 0, 0.6);
 }
 </style>
