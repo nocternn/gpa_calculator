@@ -16,17 +16,17 @@
       </div>
     </div>
 
-    <h3>Your GPA: {{gpa}}</h3>
+    <h3>Your GPA: {{GPA}}</h3>
   </form>
 </template>
 
 <script>
 export default {
   name: "Toolbar",
+  props: ["GPA"],
   data() {
     return {
       course: "",
-      gpa: null,
     };
   },
   methods: {
@@ -34,16 +34,10 @@ export default {
       const newItem = {
         id: this.course,
         title: this.course,
-        credits: null,
-        ratio: null,
         selected: false,
       };
 
       this.$emit("add-item", newItem);
-    },
-    updateGPA(result) {
-      console.log(result, 123);
-      console.log(123);
     },
   },
 };

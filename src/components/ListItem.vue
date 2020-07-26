@@ -117,7 +117,7 @@ export default {
         this.finalRatio = 4;
       }
 
-      this.$emit("register-score", this.ratio * Number(this.credits));
+      this.$emit("register-score", this.finalRatio, Number(this.credits));
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="toolbar z-depth-2">
-      <Toolbar v-on:add-item="addItem" />
+      <Toolbar v-on:add-item="addItem" v-bind:GPA="GPA" />
     </section>
 
     <section class="grey darken-4">
@@ -27,6 +27,13 @@ export default {
     ListItem,
   },
   props: ["courses"],
+  data() {
+    return {
+      GPA: null,
+      sumOfProducts: 0,
+      totalCredits: 0,
+    };
+  },
   methods: {
     addItem(newItem) {
       this.$emit("add-item", newItem);
@@ -34,8 +41,10 @@ export default {
     removeItem() {
       this.$emit("remove-item");
     },
-    updateGPA(result) {
-      console.log(result);
+    updateGPA(ratio, credits) {
+      this.sumOfProducts += ratio * credits;
+      this.totalCredits += credits;
+      this.GPA = (this.sumOfProducts / this.totalCredits).toFixed(2);
     },
   },
 };
